@@ -11,11 +11,13 @@
 	
 	<table>
 		<thead>
-			<tr>글번호</tr>
-			<tr>제목</tr>
-			<tr>작성일</tr>
-			<tr>글쓴이</tr>
-			<tr>조회수</tr>
+			<tr>
+				<th>글번호</th>
+				<th>제목</th>
+				<th>작성일</th>
+				<th>글쓴이</th>
+				<th>조회수</th>
+			</tr>
 		</thead>
 		
 		<tbody>
