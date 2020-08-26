@@ -10,4 +10,11 @@
 			id, title, content, writer, regDate, hit
 		from board.bd
 	</select>
+	
+	<!-- 게시물 작성 -->
+	<insert id="write" parameterType="com.board.domain.BoardVO">
+		insert into
+			board.bd(title, content, writer)
+			values(#{title}, #{content}, #{writer})
+	</insert>
 </mapper>

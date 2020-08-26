@@ -15,7 +15,8 @@
 </P>
 
 <P>
-	<a href="board/list">글목록</a>
+	<a href="board/list">글목록</a><br/>
+	<a href="board/write">글쓰기</a>
 </P>
 
 </body>

@@ -22,4 +22,10 @@ public class BoardServiceImpl implements BoardService {
 //		return null;
 	}
 
+	@Override
+	public void write(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.write(vo);
+	}
+
 }
