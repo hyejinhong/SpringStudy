@@ -25,10 +25,19 @@ public class BoardDAOImpl implements BoardDAO {
 //		return null;
 	}
 
+	// 게시물 작성
 	@Override
 	public void write(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		sql.insert(namespace + ".write", vo);
+	}
+
+	// 게시물 조회
+	@Override
+	public BoardVO view(int id) throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne(namespace + ".view", id);
+//		return null;
 	}
 
 }

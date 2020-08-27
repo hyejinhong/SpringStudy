@@ -1,24 +1,24 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>±Û¾²±â</title>
+<title>ê¸€ì“°ê¸°</title>
 </head>
 <body>
 
 	<form method="post">
-		<label>Á¦¸ñ</label>
+		<label>ì œëª©</label>
 		<input type="text" name="title"> <br>
 		
-		<label>±Û¾´ÀÌ</label>
+		<label>ê¸€ì“´ì´</label>
 		<input type="text" name="writer"> <br>
 		
-		<label>³»¿ë</label>
+		<label>ë‚´ìš©</label>
 		<textarea rows="5" cols="50" name="content"></textarea><br>
 		
-		<button type="submit">ÀÛ¼º</button>
+		<button type="submit">ìž‘ì„±</button>
 	</form>
 
 </body>

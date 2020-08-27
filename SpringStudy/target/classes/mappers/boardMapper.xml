@@ -17,4 +17,12 @@
 			board.bd(title, content, writer)
 			values(#{title}, #{content}, #{writer})
 	</insert>
+	
+	<!-- 게시물 조회 -->
+	<select id="view" parameterType="int" resultType="com.board.domain.BoardVO">
+		select
+			id, title, content, writer, regDate, hit
+		from board.bd
+		where id=#{id}
+	</select>
 </mapper>
