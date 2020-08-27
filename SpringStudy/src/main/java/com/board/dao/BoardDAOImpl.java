@@ -40,4 +40,11 @@ public class BoardDAOImpl implements BoardDAO {
 //		return null;
 	}
 
+	// 게시물 수정
+	@Override
+	public void modify(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update(namespace + ".modify", vo);
+	}
+
 }

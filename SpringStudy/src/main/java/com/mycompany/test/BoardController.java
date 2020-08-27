@@ -50,4 +50,16 @@ public class BoardController {
 		model.addAttribute("view", vo);
 	}
 	
+	// 게시물 수정
+	@RequestMapping(value="/modify", method=RequestMethod.GET)
+	public void getModify(@RequestParam("id") int id, Model model) throws Exception {
+		BoardVO vo = service.view(id);
+		model.addAttribute("view", vo);
+	}
+	
+	@RequestMapping(value="/modify", method=RequestMethod.POST)
+	public String postModify(BoardVO vo) throws Exception {
+		service.modify(vo);
+		return "redirect:/board/view?id="+vo.getId();
+	}
 }

@@ -35,4 +35,11 @@ public class BoardServiceImpl implements BoardService {
 //		return null;
 	}
 
+	// 게시물 수정
+	@Override
+	public void modify(BoardVO vo) throws Exception {
+		// TODO Auto-generated method stub
+		dao.modify(vo);
+	}
+
 }

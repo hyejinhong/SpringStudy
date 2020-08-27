@@ -25,4 +25,14 @@
 		from board.bd
 		where id=#{id}
 	</select>
+	
+	<!-- 게시물 수정 -->
+	<update id="modify" parameterType="com.board.domain.BoardVO">
+		update board.bd
+		set
+			title=#{title},
+			content=#{content},
+			writer=#{writer}
+		where id=#{id}
+	</update>
 </mapper>
