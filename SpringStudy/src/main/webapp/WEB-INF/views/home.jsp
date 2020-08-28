@@ -15,8 +15,10 @@
 </P>
 
 <P>
-	<a href="board/list">글목록</a><br/>
-	<a href="board/write">글쓰기</a>
+	<div id="nav">
+	<%@ include file="./include/nav.jsp" %>
+	</div>
+
 </P>
 
 </body>

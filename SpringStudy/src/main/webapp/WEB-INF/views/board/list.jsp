@@ -9,7 +9,10 @@
 </head>
 <body>
 	
-	<table>
+	<div id="nav">
+	<%@ include file="../include/nav.jsp" %>
+	</div>
+		<table>
 		<thead>
 			<tr>
 				<th>글번호</th>
