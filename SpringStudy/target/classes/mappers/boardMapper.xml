@@ -26,6 +26,14 @@
 		where id=#{id}
 	</select>
 	
+	<!-- 게시물 조회수 증가 -->
+	<update id="hit" parameterType="int">
+		update board.bd
+		set
+			hit=hit+1
+		where id=#{id}
+	</update>	
+	
 	<!-- 게시물 수정 -->
 	<update id="modify" parameterType="com.board.domain.BoardVO">
 		update board.bd

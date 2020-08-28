@@ -46,6 +46,7 @@ public class BoardController {
 	// 게시물 조회
 	@RequestMapping(value="/view", method=RequestMethod.GET)
 	public void getView(@RequestParam("id") int id, Model model) throws Exception {
+		service.hit(id);
 		BoardVO vo = service.view(id);
 		model.addAttribute("view", vo);
 	}

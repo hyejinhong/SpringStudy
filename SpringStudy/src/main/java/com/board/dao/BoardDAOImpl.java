@@ -39,6 +39,13 @@ public class BoardDAOImpl implements BoardDAO {
 		return sql.selectOne(namespace + ".view", id);
 //		return null;
 	}
+	
+	// 게시물 조회수 올리기
+	@Override
+	public void hit(int id) throws Exception {
+		// TODO Auto-generated method stub
+		sql.update(namespace + ".hit", id);
+	}
 
 	// 게시물 수정
 	@Override
@@ -46,5 +53,6 @@ public class BoardDAOImpl implements BoardDAO {
 		// TODO Auto-generated method stub
 		sql.update(namespace + ".modify", vo);
 	}
+
 
 }

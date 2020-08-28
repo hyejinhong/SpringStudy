@@ -22,12 +22,14 @@ public class BoardServiceImpl implements BoardService {
 //		return null;
 	}
 
+	// 게시물 작성
 	@Override
 	public void write(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		dao.write(vo);
 	}
 
+	// 게시물 조회수
 	@Override
 	public BoardVO view(int id) throws Exception {
 		// TODO Auto-generated method stub
@@ -35,11 +37,20 @@ public class BoardServiceImpl implements BoardService {
 //		return null;
 	}
 
+	// 게시물 조회수 올리기
+	@Override
+	public void hit(int id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.hit(id);
+	}
+
+	
 	// 게시물 수정
 	@Override
 	public void modify(BoardVO vo) throws Exception {
 		// TODO Auto-generated method stub
 		dao.modify(vo);
 	}
+
 
 }

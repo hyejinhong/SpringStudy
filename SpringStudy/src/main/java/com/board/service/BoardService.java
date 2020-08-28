@@ -15,6 +15,9 @@ public interface BoardService {
 	// 게시물 조회
 	public BoardVO view(int id) throws Exception;
 	
+	// 게시물 조회수 올리기
+	public void hit(int id) throws Exception;
+	
 	// 게시물 수정
 	public void modify(BoardVO vo) throws Exception;
 }
