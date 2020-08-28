@@ -63,4 +63,11 @@ public class BoardController {
 		service.modify(vo);
 		return "redirect:/board/view?id="+vo.getId();
 	}
+	
+	// 게시물 삭제
+	@RequestMapping(value="/delete", method=RequestMethod.GET)
+	public String getDelete(@RequestParam("id") int id) throws Exception {
+		service.delete(id);
+		return "redirect:/board/list";
+	}
 }

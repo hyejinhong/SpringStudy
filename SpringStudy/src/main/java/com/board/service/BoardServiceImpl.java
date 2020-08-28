@@ -52,5 +52,12 @@ public class BoardServiceImpl implements BoardService {
 		dao.modify(vo);
 	}
 
+	// 게시물 삭제
+	@Override
+	public void delete(int id) throws Exception {
+		// TODO Auto-generated method stub
+		dao.delete(id);
+	}
+
 
 }

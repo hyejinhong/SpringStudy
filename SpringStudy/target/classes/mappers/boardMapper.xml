@@ -43,4 +43,11 @@
 			writer=#{writer}
 		where id=#{id}
 	</update>
+	
+	<!-- 게시물 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete
+		from board.bd
+		where id=#{id}
+	</delete>
 </mapper>

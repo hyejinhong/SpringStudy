@@ -23,5 +23,17 @@
 	<div>
 		<a href="/board/modify?id=${view.id}">게시물 수정</a>
 	</div>
+	
+	<button onclick="deleteArticle(${view.id});">게시물 삭제</button>
 </body>
+
+<script>
+	
+	function deleteArticle(id) {
+		if(confirm("삭제할까요?")) {
+			location.href="delete?id="+id;
+		}
+	}
+	
+</script>
 </html>
