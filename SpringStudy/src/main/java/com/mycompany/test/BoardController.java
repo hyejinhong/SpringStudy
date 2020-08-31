@@ -24,10 +24,17 @@ public class BoardController {
 	
 	// 게시물 목록
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void getList(Model model) throws Exception {
-		List<BoardVO> list = null;
-		list = service.list();
+	public void getList(Model model, @RequestParam("page") int page) throws Exception {
 		
+		int count = service.count();		// 게시물 총 갯수
+		int postNum = 10;					// 한 페이지에 몇개 출력?
+		int pageNum = (int) Math.ceil((double) count/postNum); // 페이지 갯수
+		int displayPost = (page-1) * postNum;
+		
+		List<BoardVO> list = null;
+		list = service.list(displayPost, postNum);
+
+		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("list", list);
 	}
 	

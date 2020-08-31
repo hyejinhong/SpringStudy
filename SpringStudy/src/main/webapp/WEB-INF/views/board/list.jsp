@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>게시물 목록</title>
 
-<%@ include file="../include/cssjs.jsp" %>
+<%@ include file="../include/cssjs.jsp"%>
 </head>
 <body>
 
@@ -26,7 +26,7 @@
 					<th>조회수</th>
 				</tr>
 			</thead>
-	
+
 			<tbody>
 				<c:forEach items="${list}" var="list">
 					<tr>
@@ -39,6 +39,14 @@
 				</c:forEach>
 			</tbody>
 		</table>
+
+		<div>
+			<c:forEach begin="1" end="${pageNum}" var="page">
+				<span>
+					<a href="/board/list?page=${page}">${page}</a>
+				</span>
+			</c:forEach>
+		</div>
 	</div>
 </body>
 </html>

@@ -4,11 +4,13 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.mappers.board">
 
-	<!-- 게시물 목록 -->
-	<select id="list" resultType="com.board.domain.BoardVO">
+	<!-- 게시물 목록(페이징 추가) -->
+	<select id="list" parameterType="hashMap" resultType="com.board.domain.BoardVO">
 		select
 			id, title, content, writer, regDate, hit
 		from board.bd
+		order by id desc
+		limit #{displayPost}, #{postNum}
 	</select>
 	
 	<!-- 게시물 작성 -->
@@ -50,4 +52,11 @@
 		from board.bd
 		where id=#{id}
 	</delete>
+	
+	<!-- 게시물 총 갯수 -->
+	<select id="count" resultType="int">
+		select
+			count(*)
+		from board.bd
+	</select>
 </mapper>

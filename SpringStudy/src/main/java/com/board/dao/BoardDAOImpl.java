@@ -1,5 +1,6 @@
 package com.board.dao;
 
+import java.util.HashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -19,9 +20,14 @@ public class BoardDAOImpl implements BoardDAO {
 	
 	// 게시물 목록
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> list(int displayPost, int postNum) throws Exception {
 		// TODO Auto-generated method stub
-		return sql.selectList(namespace + ".list");
+		HashMap data = new HashMap();
+		data.put("displayPost", displayPost);
+		data.put("postNum", postNum);
+
+		System.out.println(data.toString());
+		return sql.selectList(namespace + ".list", data);
 //		return null;
 	}
 
@@ -59,6 +65,13 @@ public class BoardDAOImpl implements BoardDAO {
 	public void delete(int id) throws Exception {
 		// TODO Auto-generated method stub
 		sql.delete(namespace + ".delete", id);
+	}
+
+	// 게시물 갯수
+	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return sql.selectOne(namespace + ".count");
 	}
 
 

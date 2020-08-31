@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <ul class="nav nav-tabs">
   <li>
-  	<a href="/board/list">게시물 목록</a>
+  	<a href="/board/list?page=1">게시물 목록</a>
   </li>
   <li>
   	<a href="/board/write">게시물 작성</a>

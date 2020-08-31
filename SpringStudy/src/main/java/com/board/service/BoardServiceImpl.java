@@ -16,9 +16,9 @@ public class BoardServiceImpl implements BoardService {
 	private BoardDAO dao;
 	
 	@Override
-	public List<BoardVO> list() throws Exception {
+	public List<BoardVO> list(int displayPost, int postNum) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.list();
+		return dao.list(displayPost, postNum);
 //		return null;
 	}
 
@@ -57,6 +57,13 @@ public class BoardServiceImpl implements BoardService {
 	public void delete(int id) throws Exception {
 		// TODO Auto-generated method stub
 		dao.delete(id);
+	}
+
+	// °Ô½Ã¹° ÃÑ °¹¼ö
+	@Override
+	public int count() throws Exception {
+		// TODO Auto-generated method stub
+		return dao.count();
 	}
 
 
