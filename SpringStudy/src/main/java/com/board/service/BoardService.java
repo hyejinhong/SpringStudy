@@ -7,7 +7,7 @@ import com.board.domain.BoardVO;
 public interface BoardService {
 
 	// 게시물 목록
-	public List<BoardVO> list(int displayPost, int postNum) throws Exception;
+	public List<BoardVO> list(int displayPost, int postNum, String searchType, String keyword) throws Exception;
 	
 	// 게시물 작성
 	public void write(BoardVO vo) throws Exception;
@@ -25,5 +25,5 @@ public interface BoardService {
 	public void delete(int id) throws Exception;
 	
 	// 게시물 총 갯수
-	public int count() throws Exception;
+	public int count(String searchType, String keyword) throws Exception;
 }

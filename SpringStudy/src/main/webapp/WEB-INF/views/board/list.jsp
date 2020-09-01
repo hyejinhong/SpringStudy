@@ -43,27 +43,52 @@
 		<div class="container">
 			<ul class="pagination center-block">
 				<c:if test="${pagination.prev}">
-					<li><a href="/board/list?page=${pagination.startPageNum-1}"><span>&laquo;</span></a>
+					<li><a href="/board/list?page=${pagination.startPageNum-1}${pagination.searchTypeKeyword}"><span>&laquo;</span></a>
 					</li>
 				</c:if>
 
 				<c:forEach begin="${pagination.startPageNum}"
 					end="${pagination.endPageNum}" var="page">
 					<c:if test="${cur == page}">
-						<li class="active"><a href="/board/list?page=${page}">${page}</a></li>
+						<li class="active"><a href="/board/list?page=${page}${pagination.searchTypeKeyword}">${page}</a></li>
 					</c:if>
 					<c:if test="${cur != page}">
-						<li><a href="/board/list?page=${page}">${page}</a></li>
+						<li><a href="/board/list?page=${page}${pagination.searchTypeKeyword}">${page}</a></li>
 					</c:if>
 				</c:forEach>
 
 				<c:if test="${pagination.next}">
-					<li><a href="/board/list?page=${pagination.endPageNum+1}"><span>&raquo;</span></a>
+					<li><a href="/board/list?page=${pagination.endPageNum+1}${pagination.searchTypeKeyword}"><span>&raquo;</span></a>
 					</li>
 				</c:if>
 
 			</ul>
 		</div>
+		
+		<br>
+		<div class="row">
+			<div class="col-sm-2">
+				<select class="col-sm-2 form-control" name="searchType">
+					<option value="title" <c:if test="${pagination.searchType eq 'title'}">selected</c:if>>제목</option>
+					<option value="content" <c:if test="${pagination.searchType eq 'content'}">selected</c:if>>내용</option>
+					<option value="title_content" <c:if test="${pagination.searchType eq 'title_content'}">selected</c:if>>제목+내용</option>
+					<option value="writer" <c:if test="${pagination.searchType eq 'writer'}">selected</c:if>>작성자</option>
+				</select>
+			</div>
+			<div class="col-sm-8">
+				<input class="col-sm-9 form-control" type="text" name="keyword" value="${pagination.keyword}">
+			</div>
+				<button class="col-sm-1 btn btn-primary" id="searchBtn" type="button">검색</button>
+		</div>
 	</div>
 </body>
+
+<script type="text/javascript">
+	$("#searchBtn").click(function() {
+		let searchType = $("select[name=searchType]").val();
+		let keyword = $("input[name=keyword]").val();
+		
+		location.href="/board/list?page=1&searchType="+searchType+"&keyword="+keyword;
+	})
+</script>
 </html>

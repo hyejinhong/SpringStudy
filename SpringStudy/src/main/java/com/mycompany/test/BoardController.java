@@ -25,20 +25,27 @@ public class BoardController {
 	
 	// 게시물 목록
 	@RequestMapping(value="/list", method=RequestMethod.GET)
-	public void getList(Model model, @RequestParam("page") int page) throws Exception {
+	public void getList(Model model, @RequestParam("page") int page,
+			@RequestParam(value="searchType", required=false, defaultValue="title") String searchType,
+			@RequestParam(value="keyword", required=false, defaultValue="") String keyword) throws Exception {
 		
 		Page pagination = new Page();
 		
 		pagination.setPage(page);
-		pagination.setCount(service.count());
+		pagination.setCount(service.count(searchType, keyword));
+//		pagination.setSearchTypeKeyword(searchType, keyword);
+		pagination.setSearchType(searchType);
+		pagination.setKeyword(keyword);
+
 		
 		List<BoardVO> list = null;
-		list = service.list(pagination.getDisplayPost(), pagination.getPostNum());
+		list = service.list(pagination.getDisplayPost(), pagination.getPostNum(), searchType, keyword);
 
 		model.addAttribute("list", list);
 		model.addAttribute("cur", page);
-		
 		model.addAttribute("pagination", pagination);
+//		model.addAttribute("searchType", searchType);
+//		model.addAttribute("keyword", keyword);
 	}
 	
 	// 게시물 작성

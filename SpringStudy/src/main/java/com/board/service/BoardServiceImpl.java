@@ -17,9 +17,9 @@ public class BoardServiceImpl implements BoardService {
 	
 	// 게시물 목록
 	@Override
-	public List<BoardVO> list(int displayPost, int postNum) throws Exception {
+	public List<BoardVO> list(int displayPost, int postNum, String searchType, String keyword) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.list(displayPost, postNum);
+		return dao.list(displayPost, postNum, searchType, keyword);
 //		return null;
 	}
 
@@ -62,9 +62,9 @@ public class BoardServiceImpl implements BoardService {
 
 	// 게시물 총 갯수
 	@Override
-	public int count() throws Exception {
+	public int count(String searchType, String keyword) throws Exception {
 		// TODO Auto-generated method stub
-		return dao.count();
+		return dao.count(searchType, keyword);
 	}
 
 

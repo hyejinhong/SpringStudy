@@ -14,6 +14,10 @@ public class Page {
 	private boolean prev;		// 이전 버튼 출력 여부
 	private boolean next;		// 다음 버튼 출력 여부
 	
+	private String searchTypeKeyword;
+	private String searchType;	// 검색 조건
+	private String keyword; 	// 검색어
+	
 	public int getPage() {
 		return page;
 	}
@@ -64,7 +68,34 @@ public class Page {
 		next = endPageNum * pageNumCnt >= count ? false : true;
 
 		displayPost = (page-1) * postNum;
+	}
+	
+	public String getSearchTypeKeyword() {
+		if(searchType.equals("") || keyword.equals("")) {
+			searchTypeKeyword = "";
+		}
+		else {
+			searchTypeKeyword = "&searchType="+searchType+"&keyword="+keyword;
+		}
 		
-		System.out.println("endPageNum: " + endPageNum);
+		return searchTypeKeyword;
+	}
+	
+//	public void setSearchTypeKeyword(String searchType, String keyword) {
+//		// 비어있다면
+//		System.out.println(searchTypeKeyword);
+//	}
+	
+	public String getSearchType() {
+		return searchType;
+	}
+	public void setSearchType(String searchType) {
+		this.searchType = searchType;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
 	}
 }

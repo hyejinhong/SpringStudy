@@ -4,11 +4,29 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.board.mappers.board">
 
-	<!-- 게시물 목록(페이징 추가) -->
+	<!-- 게시물 목록(페이징 , 검색 추가) -->
 	<select id="list" parameterType="hashMap" resultType="com.board.domain.BoardVO">
 		select
 			id, title, content, writer, regDate, hit
 		from board.bd
+		
+		<if test='searchType.equals("title")'>
+			where title like concat('%', #{keyword}, '%')	
+		</if>
+		
+		<if test='searchType.equals("content")'>
+			where content like concat('%', #{keyword}, '%')		
+		</if>
+		
+		<if test='searchType.equals("title_content")'>	
+			where title like concat('%', #{keyword}, '%') 
+			or content like concat('%', #{keyword}, '%')
+		</if>
+			
+		<if test='searchType.equals("writer")'>	
+			where writer like concat('%', #{keyword}, '%') 
+		</if>				
+					
 		order by id desc
 		limit #{displayPost}, #{postNum}
 	</select>
@@ -53,10 +71,28 @@
 		where id=#{id}
 	</delete>
 	
-	<!-- 게시물 총 갯수 -->
-	<select id="count" resultType="int">
+	<!-- 게시물 총 갯수, 검색결과 반영 -->
+	<select id="count" parameterType="hashMap" resultType="int">
 		select
 			count(*)
 		from board.bd
+		
+		<if test='searchType.equals("title")'>
+			where title like concat('%', #{keyword}, '%')	
+		</if>
+		
+		<if test='searchType.equals("content")'>
+			where content like concat('%', #{keyword}, '%')		
+		</if>
+		
+		<if test='searchType.equals("title_content")'>	
+			where title like concat('%', #{keyword}, '%') 
+			or content like concat('%', #{keyword}, '%')
+		</if>
+			
+		<if test='searchType.equals("writer")'>	
+			where writer like concat('%', #{keyword}, '%') 
+		</if>				
+		
 	</select>
 </mapper>
