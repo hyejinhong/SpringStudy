@@ -15,6 +15,7 @@ public class BoardServiceImpl implements BoardService {
 	@Inject
 	private BoardDAO dao;
 	
+	// 게시물 목록
 	@Override
 	public List<BoardVO> list(int displayPost, int postNum) throws Exception {
 		// TODO Auto-generated method stub

@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.board.domain.BoardVO;
+import com.board.domain.Page;
 import com.board.service.BoardService;
 
 @Controller("boardController")
@@ -26,16 +27,18 @@ public class BoardController {
 	@RequestMapping(value="/list", method=RequestMethod.GET)
 	public void getList(Model model, @RequestParam("page") int page) throws Exception {
 		
-		int count = service.count();		// 게시물 총 갯수
-		int postNum = 10;					// 한 페이지에 몇개 출력?
-		int pageNum = (int) Math.ceil((double) count/postNum); // 페이지 갯수
-		int displayPost = (page-1) * postNum;
+		Page pagination = new Page();
+		
+		pagination.setPage(page);
+		pagination.setCount(service.count());
 		
 		List<BoardVO> list = null;
-		list = service.list(displayPost, postNum);
+		list = service.list(pagination.getDisplayPost(), pagination.getPostNum());
 
-		model.addAttribute("pageNum", pageNum);
 		model.addAttribute("list", list);
+		model.addAttribute("cur", page);
+		
+		model.addAttribute("pagination", pagination);
 	}
 	
 	// 게시물 작성
@@ -47,7 +50,7 @@ public class BoardController {
 	@RequestMapping(value="/write", method=RequestMethod.POST)
 	public String postWrite(BoardVO vo) throws Exception {
 		service.write(vo);
-		return "redirect:/board/list";
+		return "redirect:/board/list?page=1";
 	}
 	
 	// 게시물 조회
@@ -75,6 +78,6 @@ public class BoardController {
 	@RequestMapping(value="/delete", method=RequestMethod.GET)
 	public String getDelete(@RequestParam("id") int id) throws Exception {
 		service.delete(id);
-		return "redirect:/board/list";
+		return "redirect:/board/list?page=1";
 	}
 }

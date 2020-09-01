@@ -26,7 +26,6 @@ public class BoardDAOImpl implements BoardDAO {
 		data.put("displayPost", displayPost);
 		data.put("postNum", postNum);
 
-		System.out.println(data.toString());
 		return sql.selectList(namespace + ".list", data);
 //		return null;
 	}

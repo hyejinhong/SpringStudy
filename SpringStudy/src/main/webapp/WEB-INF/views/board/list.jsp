@@ -40,12 +40,29 @@
 			</tbody>
 		</table>
 
-		<div>
-			<c:forEach begin="1" end="${pageNum}" var="page">
-				<span>
-					<a href="/board/list?page=${page}">${page}</a>
-				</span>
-			</c:forEach>
+		<div class="container">
+			<ul class="pagination center-block">
+				<c:if test="${pagination.prev}">
+					<li><a href="/board/list?page=${pagination.startPageNum-1}"><span>&laquo;</span></a>
+					</li>
+				</c:if>
+
+				<c:forEach begin="${pagination.startPageNum}"
+					end="${pagination.endPageNum}" var="page">
+					<c:if test="${cur == page}">
+						<li class="active"><a href="/board/list?page=${page}">${page}</a></li>
+					</c:if>
+					<c:if test="${cur != page}">
+						<li><a href="/board/list?page=${page}">${page}</a></li>
+					</c:if>
+				</c:forEach>
+
+				<c:if test="${pagination.next}">
+					<li><a href="/board/list?page=${pagination.endPageNum+1}"><span>&raquo;</span></a>
+					</li>
+				</c:if>
+
+			</ul>
 		</div>
 	</div>
 </body>
