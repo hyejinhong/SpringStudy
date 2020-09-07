@@ -7,4 +7,7 @@
   <li>
   	<a href="/board/write">게시물 작성</a>
   </li>
+  <li>
+  	<a href="/member/register">회원가입</a>
+  </li>
 </ul>
