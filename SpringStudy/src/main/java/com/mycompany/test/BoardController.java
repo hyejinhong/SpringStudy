@@ -3,6 +3,8 @@ package com.mycompany.test;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -50,8 +52,12 @@ public class BoardController {
 	
 	// 게시물 작성
 	@RequestMapping(value="/write", method=RequestMethod.GET)
-	public void getWrite() throws Exception {
+	public void getWrite(HttpSession session, Model model) throws Exception {
+		Object loginInfo = session.getAttribute("member");
 		
+		if(loginInfo == null) {
+			model.addAttribute("msg", false);
+		}
 	}
 	
 	@RequestMapping(value="/write", method=RequestMethod.POST)
