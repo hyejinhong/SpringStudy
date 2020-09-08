@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -32,7 +33,8 @@
 					<tr>
 						<td>${list.id}</td>
 						<td><a href="/board/view?id=${list.id}">${list.title}</a></td>
-						<td>${list.regDate}</td>
+						<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${list.regDate}"/>
+						</td>
 						<td>${list.writer}</td>
 						<td>${list.hit}</td>
 					</tr>

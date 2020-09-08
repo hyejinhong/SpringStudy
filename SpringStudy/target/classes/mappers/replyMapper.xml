@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.board.mappers.reply">
+	<!-- 댓글 조회 -->
+	<select id="readReply" resultType="com.board.domain.ReplyVO">
+		select
+			rid, content, writer, regDate
+		from board.reply
+		where id=#{id}
+	</select>
+	
+	<!-- 댓글 작성 -->
+	<insert id="write">
+		insert into
+			board.reply(id, content, writer)
+			values(#{id}, #{content}, #{writer})
+	</insert>
+</mapper>

@@ -3,6 +3,7 @@ package com.mycompany.test;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -10,10 +11,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.board.domain.BoardVO;
 import com.board.domain.Page;
+import com.board.domain.ReplyVO;
 import com.board.service.BoardService;
+import com.board.service.ReplyService;
 
 @Controller("boardController")
 @RequestMapping("/board/")
@@ -24,6 +28,9 @@ public class BoardController {
 	
 	@Resource
 	BoardService service;
+	
+	@Inject
+	ReplyService replyService;
 	
 	// 게시물 목록
 	@RequestMapping(value="/list", method=RequestMethod.GET)
@@ -72,6 +79,9 @@ public class BoardController {
 		service.hit(id);
 		BoardVO vo = service.view(id);
 		model.addAttribute("view", vo);
+		
+		List<ReplyVO> replyList = replyService.readReply(id);
+		model.addAttribute("replyList", replyList);
 	}
 	
 	// 게시물 수정
@@ -92,5 +102,12 @@ public class BoardController {
 	public String getDelete(@RequestParam("id") int id) throws Exception {
 		service.delete(id);
 		return "redirect:/board/list?page=1";
+	}
+	
+	// 댓글 작성
+	@RequestMapping(value="/writeReply", method=RequestMethod.POST)
+	public String replyWrite(ReplyVO vo) throws Exception {
+		replyService.write(vo);
+		return "redirect:/board/view?id="+vo.getId();
 	}
 }
