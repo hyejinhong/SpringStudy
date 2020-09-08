@@ -9,4 +9,7 @@ public interface MemberDAO {
 	
 	// 로그인
 	public MemberVO login(MemberVO vo) throws Exception;
+	
+	// 아이디 확인
+	public MemberVO idCheck(String userId) throws Exception;
 }

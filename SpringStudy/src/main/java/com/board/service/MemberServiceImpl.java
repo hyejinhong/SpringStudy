@@ -42,4 +42,12 @@ public class MemberServiceImpl implements MemberService {
 		return login;
 	}
 
+	@Override
+	public boolean idCheck(String userId) throws Exception {
+		// TODO Auto-generated method stub
+		MemberVO checked = dao.idCheck(userId);
+
+		return checked == null ? true : false;
+	}
+
 }

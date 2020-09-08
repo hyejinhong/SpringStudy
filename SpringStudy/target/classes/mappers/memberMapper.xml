@@ -18,4 +18,12 @@
 		from board.member
 		where userId=#{userId} and userPw=#{userPw}
 	</select>
+	
+	<!-- 아이디 확인 -->
+	<select id="idCheck" resultType="com.board.domain.MemberVO">
+		select
+			userId
+		from board.member
+		where userId=#{userId}
+	</select>
 </mapper>

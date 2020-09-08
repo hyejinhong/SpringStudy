@@ -17,31 +17,46 @@
 
 	<div class="container">
 		<form method="post" onsubmit="return checkEmpty();">
-			<div class="form-group">
-				<label class="col-sm-2 control-label">아이디</label>
-				<div class="col-sm-10">
-					<input class="form-control" type="text" id="userId" name="userId"> <br>
+			<div class="row">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">아이디</label>
+					<div class="col-sm-8">
+						<input class="form-control" type="text" id="userId" name="userId">
+						<br>
+					</div>
+					<div class="col-sm-2">
+						<button type="button" class="btn btn-primary" id="idCheckBtn">중복 확인</button>
+					</div>
 				</div>
 			</div>
-
-			<div class="form-group">
-				<label class="col-sm-2 control-label">비밀번호</label>
-				<div class="col-sm-10">
-					<input class="form-control" type="password" id="userPw"
-						name="userPw"> <br>
-				</div>
-			</div>
-
-			<div class="form-group">
-				<label class="col-sm-2 control-label">닉네임</label>
-				<div class="col-sm-10">
-					<input class="form-control" type="text" id="userName"
-						name="userName"> <br>
-				</div>
-			</div>
-
-			<button class="btn btn-success pull-right" id="submitBtn" type="submit">가입</button>
 			
+			<div id="checkResult" class="alert alert-warning">
+				아이디 확인이 필요합니다.
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">비밀번호</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="password" id="userPw"
+							name="userPw"> <br>
+					</div>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">닉네임</label>
+					<div class="col-sm-10">
+						<input class="form-control" type="text" id="userName"
+							name="userName"> <br>
+					</div>
+				</div>
+			</div>
+
+			<button class="btn btn-success pull-right" id="submitBtn"
+				type="submit" disabled="disabled">가입</button>
+
 		</form>
 	</div>
 </body>
@@ -60,5 +75,41 @@
 		}
 		return true;
 	}
+	
+	// 아이디 중복검사
+	$("#idCheckBtn").click(function() {
+		let body = {
+			userId: $("input[name=userId]").val()	
+		};
+		
+		$.ajax({
+			url: "/member/idCheck",
+			type: "post",
+			data: body,
+			success: function(data) {
+				if(data) {
+					$("#checkResult").addClass("alert-success");
+					$("#checkResult").removeClass("alert-warning");
+					$("#checkResult").text("사용가능한 아이디입니다.");
+					$("#submitBtn").removeAttr("disabled");
+				}
+				else {
+					$("#checkResult").removeClass("alert-success");
+					$("#checkResult").addClass("alert-danger");
+					$("#checkResult").text("이미 사용중인 아이디입니다.");
+				}
+			}
+		});
+	});
+	
+	// 아이디 값 변경되면 중복검사 다시 필요
+	$("input[name=userId]").change(function() {
+		$("#checkResult").removeClass("alert-success");
+		$("#checkResult").removeClass("alert-danger");
+		$("#checkResult").addClass("alert-warning");
+		$("#checkResult").text("아이디 확인이 필요합니다.");
+		$("#submitBtn").attr("disabled", "disabled");
+	});
+
 </script>
 </html>
