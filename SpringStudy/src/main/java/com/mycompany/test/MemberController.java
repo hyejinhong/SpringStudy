@@ -24,13 +24,13 @@ public class MemberController {
 	@Inject
 	MemberService service;
 	
-	// È¸¿ø°¡ÀÔ get
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ get
 	@RequestMapping(value="/register", method=RequestMethod.GET)
 	public void getRegister() throws Exception {
 		logger.info("get register");
 	}
 	
-	// È¸¿ø°¡ÀÔ post
+	// È¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ post
 	@RequestMapping(value="/register", method=RequestMethod.POST)
 	public String postRegister(MemberVO vo) throws Exception {
 		logger.info("post register");
@@ -38,7 +38,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// ·Î±×ÀÎ
+	// ï¿½Î±ï¿½ï¿½ï¿½
 	@RequestMapping(value="/login", method=RequestMethod.POST)
 	public String login(MemberVO vo, HttpServletRequest req, RedirectAttributes rttr) throws Exception {
 		HttpSession session = req.getSession();
@@ -48,7 +48,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// ·Î±×¾Æ¿ô
+	// ï¿½Î±×¾Æ¿ï¿½
 	@RequestMapping(value="/logout", method=RequestMethod.GET)
 	public String logout(HttpSession session) throws Exception {
 		logger.info("logout");
@@ -57,12 +57,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	// ¾ÆÀÌµð È®ÀÎ
+	// ï¿½ï¿½ï¿½Ìµï¿½ È®ï¿½ï¿½
 	@ResponseBody
 	@RequestMapping(value="/idCheck", method=RequestMethod.POST)
 	public boolean postIdCheck(HttpServletRequest req) throws Exception {
 		String userId = req.getParameter("userId");		
-
+		
 		return service.idCheck(userId);
 	}
 }

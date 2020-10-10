@@ -81,12 +81,13 @@
 		let body = {
 			userId: $("input[name=userId]").val()	
 		};
-		
+
 		$.ajax({
 			url: "/member/idCheck",
 			type: "post",
 			data: body,
 			success: function(data) {
+				console.log("ㅎㅇ", data);
 				if(data) {
 					$("#checkResult").addClass("alert-success");
 					$("#checkResult").removeClass("alert-warning");
